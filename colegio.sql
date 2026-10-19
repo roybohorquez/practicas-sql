@@ -65,3 +65,15 @@ INSERT INTO calificaciones (inscripcion_id, nota_parcial, nota_final) VALUES
 (1, 15.5, 18.0), -- Notas para Juan en Bases de Datos
 (2, 12.0, 14.5), -- Notas para María en Matemáticas
 (3, 11.0, 13.0); -- Notas para Carlos en Bases de Datos
+
+-- Consulta para ver el promedio de cada alumno por curso
+SELECT 
+    alumnos.nombre AS alumno_nombre,
+    cursos.nombre_curso AS curso,
+    calificaciones.nota_parcial,
+    calificaciones.nota_final,
+    ROUND((calificaciones.nota_parcial + calificaciones.nota_final) / 2, 2) AS promedio_final
+FROM calificaciones
+INNER JOIN inscripciones ON calificaciones.inscripcion_id = inscripciones.id
+INNER JOIN alumnos ON inscripciones.alumno_id = alumnos.id
+INNER JOIN cursos ON inscripciones.curso_id = cursos.id;
