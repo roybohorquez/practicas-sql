@@ -25,3 +25,18 @@ INSERT INTO cursos (nombre_curso, descripcion) VALUES
 ('Matemáticas', 'Curso de álgebra y geometría'),
 ('Historia', 'Historia universal y contemporánea'),
 ('Bases de Datos', 'Diseño y consultas SQL');
+
+CREATE TABLE inscripciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    alumno_id INT NOT NULL,
+    curso_id INT NOT NULL,
+    fecha_inscripcion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (alumno_id) REFERENCES alumnos(id) ON DELETE CASCADE,
+    FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE
+);
+
+-- Insertar algunas inscripciones de prueba
+INSERT INTO inscripciones (alumno_id, curso_id) VALUES
+(1, 3), -- Juan se inscribe en Bases de Datos
+(2, 1), -- María se inscribe en Matemáticas
+(3, 3); -- Carlos se inscribe en Bases de Datos
