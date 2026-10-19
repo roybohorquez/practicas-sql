@@ -50,3 +50,18 @@ SELECT
 FROM inscripciones
 INNER JOIN alumnos ON inscripciones.alumno_id = alumnos.id
 INNER JOIN cursos ON inscripciones.curso_id = cursos.id;
+
+-- Crear tabla de calificaciones relacionada con las inscripciones
+CREATE TABLE IF NOT EXISTS calificaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    inscripcion_id INT NOT NULL,
+    nota_parcial DECIMAL(4,2) NOT NULL,
+    nota_final DECIMAL(4,2) NOT NULL,
+    FOREIGN KEY (inscripcion_id) REFERENCES inscripciones(id) ON DELETE CASCADE
+);
+
+-- Insertar notas de prueba para los alumnos inscritos
+INSERT INTO calificaciones (inscripcion_id, nota_parcial, nota_final) VALUES
+(1, 15.5, 18.0), -- Notas para Juan en Bases de Datos
+(2, 12.0, 14.5), -- Notas para María en Matemáticas
+(3, 11.0, 13.0); -- Notas para Carlos en Bases de Datos
