@@ -40,3 +40,13 @@ INSERT INTO inscripciones (alumno_id, curso_id) VALUES
 (1, 3), -- Juan se inscribe en Bases de Datos
 (2, 1), -- María se inscribe en Matemáticas
 (3, 3); -- Carlos se inscribe en Bases de Datos
+
+-- Consulta avanzada para listar alumnos con sus respectivos cursos
+SELECT 
+    alumnos.nombre AS alumno_nombre,
+    alumnos.apellido AS alumno_apellido,
+    cursos.nombre_curso AS curso_asignado,
+    inscripciones.fecha_inscripcion
+FROM inscripciones
+INNER JOIN alumnos ON inscripciones.alumno_id = alumnos.id
+INNER JOIN cursos ON inscripciones.curso_id = cursos.id;
