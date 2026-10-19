@@ -14,7 +14,7 @@ INSERT INTO alumnos (nombre, apellido, edad) VALUES
 ('María', 'Gómez', 16),
 ('Carlos', 'López', 14);
 
-CREATE TABLE cursos (
+CREATE TABLE IF NOT EXISTS cursos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_curso VARCHAR(100) NOT NULL,
     descripcion TEXT
@@ -26,7 +26,7 @@ INSERT INTO cursos (nombre_curso, descripcion) VALUES
 ('Historia', 'Historia universal y contemporánea'),
 ('Bases de Datos', 'Diseño y consultas SQL');
 
-CREATE TABLE inscripciones (
+CREATE TABLE IF NOT EXISTS inscripciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     alumno_id INT NOT NULL,
     curso_id INT NOT NULL,
